@@ -16,7 +16,7 @@ Pick one:
 npx https://github.com/google-gemini/gemini-cli
 
 # Install globally with npm
-npm install -g @google/gemini-cli
+npm install -g @google/gemini-cli@latest
 
 # Or with Homebrew (macOS/Linux)
 brew install gemini-cli
@@ -32,7 +32,7 @@ Once installed and configured with your API key, you can start using Gemini.
 
 ---
 
-## ⌨️ Basic Commands Reference
+## ⌨️ Basic Commands Reference (TO-DO)
 
 Here are some common commands you'll find useful. The exact flags may vary depending on the tool you choose.
 
@@ -48,18 +48,32 @@ Here are some common commands you'll find useful. The exact flags may vary depen
 
 ---
 
-## 📝 Example Workflow: Building a "Productivity Coach" App
+## 📝 Example Workflow: Building a "Python Pipeline Job Monitor" App
 
 This section walks you through a structured workflow to build a web app using Gemini. This method uses context files (`PRD.md`, `PLANNING.md`, etc.) to keep the AI aligned with your project goals.
 
+### **Step 0: Install Gemini CLI extension in VS Code**
+
+Start Gemini CLI for the first time from the VS Code terminal:
+```bash
+gemini
+```
+
+If successful, Gemini CLI will prompt you to connect VS Code Editor. Click Yes when asked."
+
+Going forward the best way to start Gemini is the following:
+
+```bash
+gemini -m "gemini-2.5-pro"  --checkpointing
+```
 ### **Step 1: Create the Product Requirements Document (PRD)**
 
 First, ask Gemini to generate a foundational PRD. This document will define the "what" and "why" of your project.
 
 **→ Prompt:**
-```bash
-gemini -o PRD.md "Help me create a Product Requirements Document (PRD) for a web app that allows users to chat with a 'productivity coach'. The coach is based on 15 of the best books on productivity (I will provide my notes for these books). I want a clean, minimalist, and beautiful app."
-````
+```markdow
+Help me create a Product Requirements Document (PRD.md) for a web app that allows users to monitor python pipelines jobs. I want a clean, minimalist, and beautiful app.
+```
 
 ### **Step 2: Create a `GEMINI.md` Meta-Instructions File**
 
@@ -67,8 +81,8 @@ This is the most important file. It tells Gemini *how* to behave during your dev
 
 **→ Prompt:**
 
-```bash
-gemini -f PRD.md -o GEMINI.md "Generate a GEMINI.md file from this PRD. This file will contain the core instructions to guide Gemini in all future coding sessions for this project."
+```markdow
+Generate a GEMINI.md file from the PRD.md. This file will contain the core instructions to guide Gemini in all future coding sessions for this project.
 ```
 
 Next, add your specific rules to this file. These rules ensure consistency in every interaction.
@@ -85,8 +99,8 @@ Now, let's define the technical vision, architecture, and tech stack.
 
 **→ Prompt:**
 
-```bash
-gemini -f PRD.md -o PLANNING.md "Create a PLANNING.md file that includes a vision statement, proposed architecture, recommended technology stack (e.g., frontend, backend, database), and a list of required tools for the app described in the PRD."
+```markdown
+Create a PLANNING.md file from the PRD.md file that includes a vision statement, proposed architecture, recommended technology stack (e.g., frontend, backend, database), and a list of required tools for the app described in the PRD.
 ```
 
 ### **Step 4: Create the `TASKS.md` File**
@@ -95,8 +109,8 @@ Break down the project into actionable steps and milestones.
 
 **→ Prompt:**
 
-```bash
-gemini -f PLANNING.md -o TASKS.md "Create a TASKS.md file with bullet-pointed tasks, divided into logical milestones, for building this app based on the planning document."
+```markdown
+Create a TASKS.md file from the PLANNING.md file with bullet-pointed tasks, divided into logical milestones, for building this app based on the planning document.
 ```
 
 ### **Step 5: Initiate the Build Process**
@@ -105,8 +119,8 @@ With all your planning documents in place, you can now ask Gemini to start codin
 
 **→ Prompt:**
 
-```bash
-gemini -f GEMINI.md -f PLANNING.md -f TASKS.md "Please read the attached files to understand the project. Then, complete the very first task listed in TASKS.md."
+```markdown
+Please read the GEMINI.md PLANNING.md TASKS.md files to understand the project. Then, complete the very first task listed in TASKS.md.
 ```
 
 ### **Step 6: Update Context and Summarize Progress**
