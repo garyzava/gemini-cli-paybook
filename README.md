@@ -82,7 +82,7 @@ This is the most important file. It tells Gemini *how* to behave during your dev
 **→ Prompt:**
 
 ```markdow
-Generate a GEMINI.md file from the PRD.md. This file will contain the core instructions to guide Gemini in all future coding sessions for this project.
+Generate a GEMINI.md file from the PRD.md. This file will contain the core instructions to guide agents in all future coding sessions for this project.
 ```
 
 Next, add your specific rules to this file. These rules ensure consistency in every interaction.
